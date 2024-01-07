@@ -1,0 +1,30 @@
+(defwidget powermenu []
+  (box :class "powermenu-widget"
+   (box :valign "center" :halign "center" :hexpand true :orientation "v" :space-evenly false :spacing 10
+     (box :spacing 1 :orientation "v"
+      (label :class "name" :halign "start" :text `Hey ${name}, Going away?  :(`)
+      (label :class "uptime" :halign "start" :text uptime))
+        (box :orientation "h" :spacing 15
+          (eventbox :cursor "pointer" :width 85 :halign "center"
+          (button :class "lock-button" :onclick "poweroff" 
+          "⏻"))
+          (eventbox :cursor "pointer" :width 85 :halign "center"
+          (button :class "restart-button" :onclick "eww close central && eww open --toggle powermenu"
+          "󰑖"))
+          (eventbox :cursor "pointer" :width 85 :halign "center"
+          (button :class "lock-button" :onclick "pkill -9 -u $USER" 
+          ""))
+          (eventbox :cursor "pointer" :width 85 :halign "center"
+          (button :class "exit-button" :onclick "pkill -9 -u $USER" 
+          "󰗼"))))))
+
+
+
+
+
+(defwindow powermenu
+  :monitor 0
+  :geometry (geometry :x "0%"
+                      :y "-1.1%"
+                       :anchor "center")
+  (powermenu))

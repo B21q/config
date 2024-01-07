@@ -1,0 +1,261 @@
+(defwidget bar []
+  (box :class "bar-widget" :orientation "v" :hexpand false :halign "center" :vexpand false 
+    (start)
+
+    (end)))
+
+
+(defwidget start []
+  (box :hexpand false :space-evenly false :spacing 15 :halign "center" :valign "start" :orientation "v"
+    (launcher)
+    (workspaces)))
+
+(defwidget center []
+  (box :hexpand false :spacing 10 :halign "center" :valign "center" :orientation "v" 
+	(label :text "B21" :orientation "v")
+  ))
+
+
+(defwidget end []
+  (box :hexpand false :space-evenly false :spacing 15 :halign "center" :valign "end" :orientation "v"
+  (apps)
+  (sysinfo)
+  (clock)))
+
+
+(defwidget apps []
+  (box :class "apps" :orientation "v" :space-evenly false :spacing 4
+    (volume)
+	  (network)
+    (spotify)))
+
+
+(defwidget spotify []
+  (eventbox
+    :cursor "pointer"
+    :halign "center"
+    (button 
+      :class "spotify"
+      :valign "start"
+      :onclick "env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify --uri=%U &"
+      :width 25
+      "" )))
+
+(defwidget firefox []
+  (eventbox
+    :cursor "pointer"
+    :halign "center"
+    (button 
+      :class "firefox"
+      :valign "start"
+      :onclick "firefox &"
+      :width 25
+      "󰾔" )))
+
+(defwidget launcher []
+  (box :halign "center"
+    (eventbox :cursor "pointer" :halign "center" :orientation "v"
+      (button :class "launcher" :halign "center" :onclick "" :width 35 "" ))))
+
+(defwidget sysinfo []
+  (box :halign "center"
+    (eventbox :cursor "pointer" :halign "center" :orientation "v" :onhover "eww open central"
+      (button :class "sysinfo" :halign "center" :onclick "eww open --toggle central" :width 35 "󰙪" ))))
+
+(defwidget workspaces []
+  (box 
+    :class "workspaces"
+    :halign "center"
+    :spacing 10
+    :orientation "v"
+    :width 40
+    :space-evenly false
+    (for workspace in hyprland
+      (eventbox
+        :cursor "pointer"
+        :onscroll "echo {} | sed -e 's/up/-1/g' -e 's/down/+1/g' | xargs hyprctl dispatch workspace"
+        :halign "center"
+        (button 
+          :class "${workspace.current ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+          :onclick "hyprctl dispatch workspace ${workspace.id}"
+          (button
+            :width 25
+            :class "icon ${workspace.current ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+            {workspace.current ? "" : ""}
+          )
+        )
+      )
+    )
+  )
+)
+
+(defwidget volume []
+  (eventbox 
+    :onhover "eww update volume_rev=true" 
+    :onhoverlost "eww update volume_rev=false"
+    (box
+      :class "volume"
+      :space-evenly false
+      :orientation "v"
+      (revealer 
+        :class "volume-bar"
+        :transition "slideup" 
+        :reveal volume_rev 
+        (eventbox
+          :cursor "pointer"
+          :halign "center"
+          (scale  
+            :orientation "v"
+            :tooltip {volume == "muted" ? "Muted" : "${volume}%"}
+            :value {volume == "muted" ? "0" : volume} 
+            :min 0 
+            :max 101 
+            :onchange "pamixer -u && pamixer --set-volume {}"
+            :flipped true
+          )
+        )
+      )
+      (eventbox
+        :cursor "pointer"
+        :onscroll "echo {} | sed -e 's/up/--up/g' -e 's/down/--down/g' | xargs volume"
+        (button 
+          :class "volume icon" 
+          :style {volume == 0 || volume == "muted" ? "color: #dd6777;" : "color: #cacaca;"} 
+          :tooltip {volume == "muted" ? "Muted" : "${volume}%" } 
+          :onclick "volume --toggle"
+          {volume == 0 || volume == "muted" ? "󰝟" : 
+          volume < 30 ? "" : 
+          volume < 75 ? "" : ""}
+        )
+      )
+    )
+  )
+)
+
+(defwidget network []
+	(eventbox 
+		:onhover "eww update network-rev=true" 
+		:onhoverlost "eww update network-rev=false"
+		(box 
+			:space-evenly false
+			:orientation "v"
+			:halign "center"
+			(button 
+				:class "network-icon" 
+				:style "color: ${network-color}" 
+        :width 35
+				"${network-icon}"
+			)
+			(revealer 
+				:transition "slideright" 
+				:reveal network-rev 
+				:duration "100ms"
+				(box 
+					:space-evenly false
+					(label 
+						:class "network-text" 
+					)
+				)
+			)
+		)
+	)
+)
+
+
+(defwidget music [] 
+	(eventbox 
+		:onhover "eww update music-rev=true" 
+		:onhoverlost "eww update music-rev=false"
+		(box 
+			:space-evenly false 
+			:spacing 10
+			:orientation "v"
+			(eventbox
+				:cursor "pointer"
+				(button 
+					:class "musicbar-art"
+					:orientation "h"
+          :width 30
+          :height 30
+					:onclick "eww open-many --toggle player-closer player" 
+					:style "background-image: url('${music-art}');"
+				)
+			)
+			(label 
+				:class "musicbar-title" 
+				:orientation "v"
+				:limit-height 10
+				:limit-width 35
+			)
+			(revealer 
+				:transition "crossfade" 
+				:reveal music-rev 
+				:duration "500ms"
+				(box 
+					:spacing 10
+					:orientation "v"
+					(eventbox
+						:cursor "pointer"
+						(button 
+							:class "musicbar-previous-icon" 
+							:onclick "./scripts/mediacontrol --previous" 
+							""
+						)
+					)
+					(eventbox
+						:cursor "pointer"
+						(button 
+							:class "musicbar-toggle-icon" 
+							:onclick "./scripts/mediacontrol --toggle" 
+							music-toggle
+						)
+					)
+					(eventbox
+						:cursor "pointer"
+						(button 
+							:class "musicbar-next-icon" 
+							:onclick "./scripts/mediacontrol --next" 
+							""
+						)
+					)
+				)
+			)
+		)
+	)
+)
+(defwidget clock []
+  (box :class "clock" :orientation "v" :space-evenly false :spacing -3 :halign "center" :valign "end"
+    (label :class "clock hour" :text hour)
+    (label :class "asas" :text "-")
+    (label :class "clock minute" :text minute)))
+
+
+
+(defwidget metric [label value onchange]
+  (box :orientation "h"
+       :class "metric"
+       :space-evenly false
+    (box :class "label" label)
+    (scale :min 0
+           :max 101
+           :active {onchange != ""}
+           :value value
+           :onchange onchange)))
+
+
+(deflisten music :initial ""
+  "playerctl --follow metadata --format '{{ title }}' || true")
+
+(defpoll time :interval "10s"
+  "date '+%H:%M %b %d, %Y'")
+
+(defwindow bar
+  :monitor 0
+  :exclusive true
+  :namespace "eww"
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :height "100%"
+                      :widget "100%"
+                      :anchor "top left")
+  (bar))

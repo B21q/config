@@ -1,0 +1,74 @@
+(defwidget cal []
+	(box 
+		:class "calendar-widget" 
+		:space-evenly false 
+		:orientation "v" 
+		:spacing 25
+        (label :text "Calendar" :halign "start")
+			(box 
+				:class "date" 
+				:space-evenly false 
+				:orientation "v"
+				(box 
+					:space-evenly false 
+					:halign "center" 
+					:spacing 10
+				)
+				(box 
+					:halign "center" 
+					:valign "start"
+				)
+			)
+		(box 
+			:class "cal" 
+			:orientation "v"
+			(box 
+				:class "cal-inner-box"
+				(calendar 
+					:class "calendar" 
+					:day calendar-day 
+					:month calendar-month 
+					:year calendar-year
+					:show-day-names true
+					:show-heading true
+					:show-details true
+				)
+			)
+		)
+		(box 
+			:class "weather-box"
+			(box 
+				:space-evenly false 
+				:orientation "v"
+				(label 
+					:class "weather-desc" 
+					:halign "start" 
+					:text weather-desc
+				)
+				(label 
+					:class "weather-temp" 
+					:halign "start" 
+					:text "${weather-temp}°C"
+				)
+			)
+			(box 
+				(label 
+					:class "weather-icon" 
+					:halign "end" 
+					:valign "end" 
+					:text weather-icon 
+					:style "color: ${weather-color}"
+				)
+			)
+		)
+	)
+)
+
+(defwindow calendar
+	:stacking "fg"
+	:monitor 0
+	:wm-ignore false
+	:windowtype "dock"
+	:geometry (geometry :x "1%" :y "2%" :anchor "top center")
+	(cal)
+)

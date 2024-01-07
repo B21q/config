@@ -1,0 +1,58 @@
+.powermenu-widget {
+    @include window;
+    padding: .6rem 0.4rem;
+    background-color: $bg;
+  }
+
+
+.name {
+  font-size: 1.2rem;
+  font-family: Manrope;
+}
+
+.uptime {
+  font-size: 1.1rem;
+  color: $fg-alt;
+}
+
+.power-button {
+  font-size: 3rem;
+  padding: 1rem .3rem 1rem 0;
+  background-color: $bg-alt;
+  border-radius: .4rem;
+}
+
+.power-button:hover {
+  color: $red;
+}
+
+.restart-button {
+  font-size: 3rem;
+  padding: 1rem .3rem 1rem 0;
+  background-color: $bg-alt;
+  border-radius: .4rem;
+}
+
+.restart-button:hover {
+  color: $blue;
+}
+
+.lock-button {
+  font-size: 3rem;
+  padding: 1rem .3rem 1rem 0;
+  background-color: $bg-alt;
+  border-radius: .4rem;
+}
+.lock-button:hover {
+  color: $red;
+}
+
+.exit-button {
+  font-size: 3rem;
+  padding: 1rem .3rem 1rem 0;
+  background-color: $bg-alt;
+  border-radius: .4rem;
+}
+.exit-button:hover {
+  color: $yellow;
+}

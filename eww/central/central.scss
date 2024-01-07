@@ -1,0 +1,382 @@
+.central-widget {
+  @include window;
+  padding: 0.6rem 0.4rem;
+  background-color: $bg;
+}
+
+.central-state {
+  background-color: $bg;
+  border-radius: 0.4rem;
+  padding: 0.4rem 0.4rem;
+  margin: 0.3rem;
+}
+
+.name {
+  font-weight: bolder;
+  color: $fg;
+}
+
+.box-top {
+  margin: 0.5rem;
+}
+
+.memory {
+  background-color: $blue;
+  border-radius: 0.4rem;
+  font-size: 2rem;
+  padding: 0.4rem 0.8rem 0.4rem 0.4rem;
+  margin: 0 0.5rem;
+  color: $bg;
+}
+
+.wifi {
+  background-color: $bg-alt;
+  border-radius: 0.2rem;
+}
+
+.dark-icon {
+  background-color: $magenta;
+  border-radius: 0.4rem;
+  font-size: 1.5rem;
+  padding: 0.4rem 0.9rem 0.4rem 0.4rem;
+  color: $bg;
+}
+
+.wifi-icon {
+  background-color: $yellow;
+  border-radius: 0.4rem;
+  font-size: 1.5rem;
+  padding: 0.4rem 0.9rem 0.4rem 0.4rem;
+  color: $bg;
+}
+
+.bluetooth-icon {
+  background-color: $green;
+  border-radius: 0.4rem;
+  font-size: 1.5rem;
+  padding: 0.4rem 0.4rem 0.4rem 0.4rem;
+  color: $bg;
+}
+
+.bluetooth {
+  background-color: $bg-alt;
+  border-radius: 0.2rem;
+  padding: 0.8rem;
+}
+
+.icons {
+  background-color: $bg-alt;
+  font-size: 2rem;
+  border-radius: 0.2rem;
+}
+
+.wm {
+  text-shadow: 0.1rem 0.1rem 0.1rem rgba(38, 38, 38, 0.5);
+  font-weight: 800;
+  color: $fg-alt;
+}
+
+.uptime {
+  text-shadow: 0.1rem 0.1rem 0.1rem rgba(38, 38, 38, 0.5);
+  font-weight: 600;
+  color: $fg-alt;
+}
+
+.profile {
+  background-color: $bg-alt;
+  margin: 0 0.5rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 4rem;
+  min-width: 4rem;
+  border-radius: 0.4rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.volume-osd {
+  @include window;
+  min-width: 25rem;
+  background-color: transparent;
+
+  padding: 0rem;
+}
+
+.volume-scale trough {
+  background-color: $bg-alt;
+  border-radius: 0.4rem;
+  min-height: 2.25rem;
+  margin: 0 0.5rem;
+}
+
+.volume-scale trough highlight {
+  background-color: $red;
+  border-radius: 0.44rem;
+  min-height: 2.25rem;
+}
+
+.volume-icon {
+  margin-left: 0.75rem;
+  font-size: 1.5rem;
+  padding: 0 0.4rem;
+  color: $bg;
+
+  &.less {
+    color: $gray;
+  }
+
+  &.more {
+    color: $bg;
+  }
+}
+
+.volume-arrow {
+  background-color: $bg-alt;
+  color: $gray;
+  margin: 0 0.5rem;
+  font-size: 2rem;
+  min-width: 2.25rem;
+  border-radius: 0.4rem;
+  transition: 0.3s;
+}
+
+.volume-arrow:hover {
+  background-color: $white;
+  color: $bg;
+}
+
+.lock,
+.exit {
+  font-size: 1.2rem;
+  background-color: $bg-alt;
+  color: $fg-alt;
+  padding: 0.7rem 1.2rem 0.7rem 1rem;
+  margin-right: 0.5rem;
+  border-radius: 0.4rem;
+  text-shadow: 0.1rem 0.1rem 0.1rem rgba(38, 38, 38, 0.5);
+}
+
+.lock:hover {
+  color: $green;
+}
+
+.exit:hover {
+  color: $red;
+}
+
+.space {
+  color: $blue;
+  font-weight: bolder;
+  font-size: 1.4rem;
+}
+
+.weather {
+  background-color: $bg-alt;
+  border-radius: 0.4rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  margin: 0 0.5rem;
+}
+
+.weather-current-icon {
+  font-size: 3rem;
+}
+
+.weather-location {
+  font-size: 1.25rem;
+  font-weight: normal;
+  color: $fg;
+}
+
+.weather-current-text {
+  font-size: 1.5rem;
+  color: $fg;
+}
+
+.weather-info {
+  margin-top: 0.5rem;
+}
+
+.weather-current-temp {
+  font-size: 2.5rem;
+  color: $blue;
+}
+
+.weather-current-maxtemp {
+  color: $fg;
+  font-size: 1.25rem;
+}
+
+.weather-current-mintemp {
+  font-size: 1.25rem;
+  margin-left: 0.5rem;
+  color: $fg;
+}
+
+.weather-hour {
+  margin: 0 0.5rem;
+}
+
+.weather-hour-icon {
+  font-size: 2rem;
+  margin: 0.25rem 0;
+}
+
+.weather-hour-temp {
+  color: $blue;
+  font-size: 1.1rem;
+}
+
+.weather-hour-time {
+  color: $fg;
+}
+
+.weather-connection-error {
+  font-size: 1.1rem;
+}
+
+.media {
+  .player {
+    background-color: $bg;
+    margin: 0.2rem 0.2rem 0.4rem 0.4rem;
+    border-radius: 0.4rem;
+    box-shadow: 0 0 4px 2px rgba(black, 0.3);
+    .cover {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      box-shadow: 0 0 4px 2px rgba(black, 0.3);
+      border-radius: 0.4rem;
+      min-height: 2rem;
+      min-width: 2rem;
+
+      .gradient {
+        border-radius: 0.4rem;
+        background: linear-gradient(
+          to right,
+          rgb($bg-alt, 1),
+          rgba($black, 0.5)
+        );
+        text-shadow: 0 0 3px black;
+
+        .info {
+          padding: 1rem;
+
+          .title {
+            font-size: 1.2rem;
+            font-weight: bolder;
+          }
+
+          .artist,
+          .album {
+            font-size: 1.1rem;
+            color: $white;
+          }
+        }
+        .progress scale trough highlight {
+          //all: unset;
+          background-image: linear-gradient(
+            to right,
+            darken($color: $green, $amount: 15%),
+            $green
+          );
+        }
+
+        .progress scale trough {
+          //all: unset;
+          background-color: rgba($cyan, 0.3);
+          box-shadow: 0 0 2px 1px rgba(black, 0.5);
+          min-height: 0.4rem;
+          min-width: 0.1rem;
+          margin: 0.2rem 1rem;
+        }
+
+        .inferior {
+          margin: 0.5rem 1rem 1rem;
+
+          .position {
+            font-size: 0.9rem;
+            min-width: 1rem;
+            color: $fg;
+          }
+
+          .time {
+            font-size: 1rem;
+          }
+          .app {
+            font-size: 1.2rem;
+            margin-right: 1.4rem;
+
+            &.spotify {
+              color: $green;
+            }
+
+            &.brave {
+              color: $green;
+            }
+
+            &.firefox {
+              color: $red;
+            }
+          }
+
+          .controls {
+            border-radius: 0.4rem;
+            .previous,
+            .next {
+              font-size: 1.2rem;
+              color: $fg-alt2;
+
+              &.canGoPrevious {
+                color: $fg;
+              }
+              &.canGoNext {
+                color: $fg;
+              }
+            }
+
+            .toggle {
+              font-size: 1.2rem;
+              color: $fg-alt2;
+              &.canPlay,
+              &.canPause {
+                color: $fg;
+              }
+            }
+
+            .shuffle,
+            .loop {
+              font-size: 1.2rem;
+
+              &.on {
+                color: $green;
+              }
+              &.off {
+                color: $fg-alt2;
+              }
+            }
+          }
+        }
+      }
+    }
+    .sidebar {
+      padding: 1rem;
+      .slider scale trough highlight {
+        //all: unset;
+        background-image: linear-gradient(
+          to right,
+          darken($color: $green, $amount: 15%),
+          $green
+        );
+        border-radius: 0.4rem;
+      }
+
+      .slider scale trough {
+        //all: unset;
+        background-color: rgba($cyan, 0.2);
+        min-width: 0.5rem;
+        border-radius: 0.4rem;
+      }
+    }
+  }
+}
